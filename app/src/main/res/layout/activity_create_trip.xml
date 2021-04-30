@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateTrip"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    >
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter The following to Start Organizing"
+        android:fontFamily="casual"
+        android:textSize="20sp"
+        android:textColor="#9C27B0"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginBottom="50dp"/>
+
+    <EditText
+      android:id="@+id/tripNm"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+     android:hint="   Name of the Trip   "
+      android:fontFamily="casual"
+      android:textSize="20sp"
+      android:textColor="#9C27B0"
+      android:gravity="center"
+      android:layout_gravity="center"
+      />
+
+    <EditText
+        android:id="@+id/Triploc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="The location of the trip"
+        android:fontFamily="casual"
+        android:textSize="20sp"
+        android:textColor="#9C27B0"
+        android:gravity="center"
+        android:layout_gravity="center"
+        />
+
+    <EditText
+        android:id="@+id/Tripdt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Trip Date"
+        android:inputType="date"
+        android:fontFamily="casual"
+        android:textSize="20sp"
+        android:textColor="#9C27B0"
+        android:gravity="center"
+        android:layout_gravity="center"/>
+
+    <EditText
+        android:id="@+id/Tripcap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Number of people"
+        android:inputType="number"
+        android:fontFamily="casual"
+        android:textSize="20sp"
+        android:textColor="#9C27B0"
+        android:gravity="center"
+        android:layout_gravity="center"
+        />
+
+    <Button
+        android:id="@+id/nxt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#FFFFFF"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="Next"
+        android:textColor="#9C27B0"
+        android:textSize="20sp"
+        app:backgroundTint="#FFFFFF"
+        android:layout_marginTop="30dp"/>
+
+
+</LinearLayout>

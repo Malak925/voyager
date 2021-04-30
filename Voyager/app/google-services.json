@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "96511402494",
+    "project_id": "voyager-ed1ec",
+    "storage_bucket": "voyager-ed1ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96511402494:android:02372eaebdeff153d8a0af",
+        "android_client_info": {
+          "package_name": "com.example.voyager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96511402494-dhnsqod2ah67d3gi0ic2vtgsr2jb4b1v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGBov4-KzGNM5mJxyDN7zcDXqqz4lYUyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96511402494-dhnsqod2ah67d3gi0ic2vtgsr2jb4b1v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96511402494:android:9c9157e6578483ccd8a0af",
+        "android_client_info": {
+          "package_name": "net.larntech.myfirstapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96511402494-dhnsqod2ah67d3gi0ic2vtgsr2jb4b1v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGBov4-KzGNM5mJxyDN7zcDXqqz4lYUyE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96511402494-dhnsqod2ah67d3gi0ic2vtgsr2jb4b1v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

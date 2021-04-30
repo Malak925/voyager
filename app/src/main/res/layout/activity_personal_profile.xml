@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".personal_profile"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="personal profile"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginBottom="50dp"
+        android:fontFamily="casual"
+        android:textSize="30sp"
+        android:textColor="#9C27B0"/>
+
+    <ImageView
+        android:id="@+id/pic2"
+        android:layout_width="match_parent"
+        android:layout_height="163dp"
+        android:layout_marginBottom="50dp"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="casual"
+        android:textSize="30sp"
+        android:textColor="#9C27B0">
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star_big_off" />
+
+        <TextView
+            android:id="@+id/uname2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="full name "
+            android:fontFamily="casual"
+            android:textSize="30sp"
+            android:textColor="#9C27B0"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/sym_action_email" />
+
+        <TextView
+            android:id="@+id/em3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="email@gmail.com"
+            android:fontFamily="casual"
+            android:textSize="20sp"
+            android:textColor="#9C27B0"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginBottom="20dp">
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/ic_menu_always_landscape_portrait" />
+
+        <TextView
+            android:id="@+id/phno2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="phone number"
+            android:fontFamily="casual"
+            android:textSize="30sp"
+            android:textColor="#9C27B0"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ed1"
+        android:layout_width="386dp"
+        android:layout_height="44dp"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+</LinearLayout>
