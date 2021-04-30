@@ -8,45 +8,17 @@ import kotlinx.android.synthetic.main.activity_trip_info.*
 
 
 class trip_info : AppCompatActivity() {
-    var db = FirebaseFirestore.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trip_info)
-        db.collection("Trip")
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    for (document in task.result!!) {
-                        Log.d("TAG", document.id + " => " + document.data)
-                        tripNm2.text = document.data.getValue("trip name").toString()
-                        Tripcap2.text=document.data.getValue("trip cap").toString()
-                        Tripdt2.text=document.data.getValue("trip date").toString()
-                        Triploc2.text=document.data.getValue("trip location").toString()
-                    }
-                } else {
-                    Log.w("TAG", "Error getting documents.", task.exception)
-                }
-            }
-
-        db.collection("Code")
-            .get()
-            .addOnCompleteListener{ task ->
-            if (task.isSuccessful){
-                for(document in task.result!!)
-                {
-                    cd.text = document.data.getValue("generated").toString()
-                }
-
-
-            }
-
-
-
-
-
-            }
-
-
+        val bundle= intent.extras
+        bundle?.let {
+            tripNm2.text = it.getString("name")
+            Tripcap2.text= it.getString("cap")
+            Tripdt2.text=it.getString("date")
+            Triploc2.text=it.getString("location")
+            cd.text= it.getString("code")
+        }
     }
-
 }

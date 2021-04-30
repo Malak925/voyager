@@ -45,8 +45,16 @@ class JoinAtrip : AppCompatActivity() {
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d("TripResult",task.result?.data.toString())
-
+                    task?.result?.data?.let{
+                        Log.d("TripResult",it.toString())
+                        val intent= Intent(this,trip_info::class.java)
+                        intent.putExtra("cap",it["trip cap"].toString())
+                        intent.putExtra("location",it["trip location"].toString())
+                        intent.putExtra("name",it["trip name"].toString())
+                        intent.putExtra("date",it["trip date"].toString())
+                        intent.putExtra("code",editTextNumber.text.toString())
+                        startActivity(intent)
+                    }
                 } else {
                     Log.w("TAG", "Error getting documents.", task.exception)
                 }
