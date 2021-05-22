@@ -7,8 +7,9 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".JoinAtrip">
-    >
+    tools:context=".JoinAtrip"
+    android:background="@drawable/_wallpaper">
+
 
     <TextView
         android:id="@+id/textView4"

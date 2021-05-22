@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".imageUpload"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@drawable/_wallpaper"
+    >
+
+    <ImageSwitcher
+        android:id="@+id/VwImg"
+        android:layout_width="411dp"
+        android:layout_height="169dp"
+        android:src="@drawable/ic_baseline_image_24" >
+
+    </ImageSwitcher>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/PreImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:textColor="#9C27B0"
+            android:textSize="20sp"
+            android:text="Previos"
+            app:backgroundTint="@color/material_on_primary_disabled"/>
+
+        <Button
+            android:id="@+id/NxtImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textColor="#9C27B0"
+            android:textSize="20sp"
+            app:backgroundTint="@color/material_on_primary_disabled" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/PkImg"
+        android:layout_width="178dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="Pick Image"
+        android:textAllCaps="false"
+        android:textColor="#9C27B0"
+        android:textSize="20sp"
+        app:backgroundTint="@color/material_on_primary_disabled" />
+
+    <Button
+        android:id="@+id/UpImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:textSize="20sp"
+        android:textColor="#9C27B0"
+        android:gravity="center"
+        android:layout_gravity="center"
+        app:backgroundTint="@color/material_on_primary_disabled"
+        android:text="Upload Image"
+        android:textAllCaps="false"
+        />
+
+</LinearLayout>

@@ -6,4 +6,13 @@
         android:id="@+id/perpro"/>
     <item android:title="trip profile"
         android:id="@+id/tripro"/>
+    <item android:title="Upload Images"
+        android:id="@+id/UpImg"/>
+
+    <item android:title="Participants"
+        android:id="@+id/parLst"/>
+    <item android:title="Bills"
+    android:id="@+id/Bill"/>
+    <item android:title="End Trip"
+        android:id="@+id/end"/>
 </menu>

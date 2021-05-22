@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:layout_gravity="center"
     android:gravity="center"
+    android:background="@drawable/_wallpaper"
     >
 
     <TextView
@@ -23,30 +24,46 @@
         android:layout_marginBottom="50dp"/>
 
     <EditText
-      android:id="@+id/tripNm"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-     android:hint="   Name of the Trip   "
-      android:fontFamily="casual"
-      android:textSize="20sp"
-      android:textColor="#9C27B0"
-      android:gravity="center"
-      android:layout_gravity="center"
-      />
+        android:id="@+id/tripNm"
+        android:layout_width="296dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:hint="   Name of the Trip   "
+        android:textColor="#9C27B0"
+        android:textSize="20sp" />
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/Triploc"
-        android:layout_width="wrap_content"
+        android:layout_width="301dp"
         android:layout_height="wrap_content"
-        android:hint="The location of the trip"
-        android:fontFamily="casual"
-        android:textSize="20sp"
-        android:textColor="#9C27B0"
-        android:gravity="center"
         android:layout_gravity="center"
-        />
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:hint="The location of the trip"
+        android:textColor="#9C27B0"
+        android:textSize="20sp" />
 
-    <EditText
+    <Button
+        android:id="@+id/Pkdt"
+        android:layout_width="311dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="Date"
+        android:textColor="#9C27B0"
+        android:textSize="20sp"
+        app:backgroundTint="@color/material_on_primary_disabled" />
+
+    <TextView
         android:id="@+id/Tripdt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,6 +74,7 @@
         android:textSize="20sp"
         android:textColor="#9C27B0"
         android:gravity="center"
+
         android:layout_gravity="center"/>
 
     <EditText
@@ -78,14 +96,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#FFFFFF"
         android:fontFamily="casual"
         android:gravity="center"
         android:text="Next"
         android:textColor="#9C27B0"
         android:textSize="20sp"
-        app:backgroundTint="#FFFFFF"
-        android:layout_marginTop="30dp"/>
+        app:backgroundTint="@color/material_on_primary_disabled"        android:layout_marginTop="30dp"/>
 
 
 </LinearLayout>

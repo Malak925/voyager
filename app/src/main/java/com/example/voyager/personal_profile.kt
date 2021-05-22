@@ -1,7 +1,9 @@
 package com.example.voyager
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,8 +18,13 @@ class personal_profile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_personal_profile)
+        var userEmail= intent.getStringExtra("email")
+        if(userEmail==null){
+            userEmail= FirebaseAuth.getInstance().currentUser?.email
+        }
+
         db.collection("users")
-            .whereEqualTo("Email",FirebaseAuth.getInstance().currentUser?.email)
+            .whereEqualTo("Email",userEmail)
                 .get()
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -34,4 +41,37 @@ class personal_profile : AppCompatActivity() {
 
 
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if (item.itemId==R.id.perpro)
+
+        {
+
+            startActivity(Intent(this,personal_profile::class.java))
+        }
+        else if (item.itemId==R.id.tripro)
+        {
+
+            startActivity(Intent(this,trip_info::class.java))
+        }
+        else if (item.itemId==R.id.UpImg){
+            startActivity(Intent(this,imageUpload::class.java))
+
+
+        }
+        else if (item.itemId==R.id.Bill){
+            startActivity(Intent(this,Bill::class.java))
+
+
+        }
+        else if (item.itemId==R.id.parLst){
+            startActivity(Intent(this,participants::class.java))
+
+
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+
 }

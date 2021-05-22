@@ -46,8 +46,25 @@ class StartTrip : AppCompatActivity() {
         else if (item.itemId==R.id.tripro)
         {
 
-         startActivity(Intent(this,trip_info::class.java))
+            startActivity(Intent(this,trip_info::class.java))
         }
+        else if (item.itemId==R.id.UpImg){
+            startActivity(Intent(this,imageUpload::class.java))
+
+
+        }
+        else if (item.itemId==R.id.Bill){
+            startActivity(Intent(this,Bill::class.java))
+
+
+        }
+        else if (item.itemId==R.id.parLst){
+            startActivity(Intent(this,participants::class.java))
+
+
+        }
+
         return super.onOptionsItemSelected(item)
     }
+
 }
