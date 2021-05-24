@@ -69,6 +69,11 @@ class personal_profile : AppCompatActivity() {
 
 
         }
+        else if (item.itemId == R.id.bills) {
+            startActivity(Intent(this, BillMenu::class.java))
+
+
+        }
 
         return super.onOptionsItemSelected(item)
     }

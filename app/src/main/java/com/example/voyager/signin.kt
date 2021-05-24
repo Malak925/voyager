@@ -15,20 +15,24 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthEmailException
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.activity_personal_profile.*
 import kotlinx.android.synthetic.main.activity_signin.*
 import kotlinx.android.synthetic.main.activity_trip_info.*
+import java.io.ByteArrayOutputStream
 
 
 class signin : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-
+    private var userID= ""
     private var firebaseStore: FirebaseStorage? = null
-    private var storageReference: StorageReference? = null
+    private var storageRef: StorageReference? = null
     var db = FirebaseFirestore.getInstance()
 
     val user: MutableMap<String, Any> = HashMap()
@@ -41,7 +45,8 @@ class signin : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
 
-        storageReference = FirebaseStorage.getInstance().reference
+        val storageRef= Firebase.storage.reference.child("users")
+
 
 
 
@@ -117,6 +122,10 @@ class signin : AppCompatActivity() {
                     }
 
                 }
+
+
+
+
     }
 
 
@@ -156,9 +165,10 @@ class signin : AppCompatActivity() {
     private fun pickImageFromGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        startActivityForResult(intent,
-          IMAGE_PICK_CODE
-        )
+
+       startActivityForResult(intent, IMAGE_PICK_CODE)
+
+
     }
   companion object{
       private val PERMISSION_CODE = 77
@@ -171,7 +181,20 @@ class signin : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
        if (resultCode==Activity.RESULT_OK&&requestCode== IMAGE_PICK_CODE){
            pic.setImageURI(data?.data)
-
+           val imagesStorageRef= storageRef?.child("$/${ FirebaseAuth.getInstance().currentUser?.email}")
+           val bitmap = MediaStore.Images.Media
+               .getBitmap(
+                   contentResolver,
+                   data?.data)
+           val baos = ByteArrayOutputStream()
+           bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+           val data = baos.toByteArray()
+           var uploadTask = imagesStorageRef?.putBytes(data)
+           uploadTask?.addOnFailureListener {
+               Log.d("Upload","Fail")
+           }?.addOnSuccessListener { taskSnapshot ->
+               Log.d("Upload","Success")
+           }
 
        }
 
@@ -179,4 +202,25 @@ class signin : AppCompatActivity() {
 
         super.onActivityResult(requestCode, resultCode, data)
     }
+    fun loadTripId() {
+        db.collection("tripUsers")
+            .whereEqualTo("userId", FirebaseAuth.getInstance().currentUser?.email)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful && task.result?.documents?.isEmpty()==false) {
+
+                    task?.result?.documents?.get(0).let{
+                        Log.d("TripResult",it?.get("tripId").toString())
+                        userID= it?.get("UserId").toString()
+                    }
+                } else {
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
+            }
+}
+
+
+
+
+
 }

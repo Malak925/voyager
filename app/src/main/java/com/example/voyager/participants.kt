@@ -52,6 +52,17 @@ class participants : AppCompatActivity() {
 
 
         }
+        else if (item.itemId == R.id.bills) {
+            startActivity(Intent(this, BillMenu::class.java))
+
+
+        }
+        else if (item.itemId == R.id.end) {
+
+            var intent = Intent(Intent.ACTION_SEND)
+
+        }
+
 
         return super.onOptionsItemSelected(item)
     }

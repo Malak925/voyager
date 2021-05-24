@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Voyager"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Bill"></activity>
+        <activity android:name=".BillMenu"></activity>
+        <activity android:name=".Bill" />
         <activity android:name=".MainActivity2" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
