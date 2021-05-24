@@ -24,7 +24,7 @@ class  MainActivity : AppCompatActivity() {
             startActivity(y)
         }
         lg1.setOnClickListener {
-            em1.setText("test@test.com")
+            em1.setText("test4@test.com")
             ps1.setText("123456789")
             if (em1.text.trim().toString().isNotEmpty()&&ps1.text.trim().toString().isNotEmpty()){
 

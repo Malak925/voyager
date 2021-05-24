@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.auth.User
@@ -30,9 +31,14 @@ class personal_profile : AppCompatActivity() {
                     if (task.isSuccessful) {
                         for (document in task.result!!) {
                             Log.d("TAG", document.id + " => " + document.data)
-                   uname2.text = document.data.getValue("Name").toString()
+                            uname2.text = document.data.getValue("Name").toString()
                             phno2.text= document.data.getValue("phone number").toString()
                             em3.text=document.data.getValue("Email").toString()
+
+                            Glide.with(this)
+                                .load(document.data.getValue("imageUrl").toString())
+                                .into(pic2)
+
                         }
                     } else {
                         Log.w("TAG", "Error getting documents.", task.exception)
