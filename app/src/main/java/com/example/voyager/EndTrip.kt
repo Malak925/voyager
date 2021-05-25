@@ -1,6 +1,5 @@
 package com.example.voyager
 
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -22,9 +21,11 @@ import kotlin.collections.ArrayList
 class EndTrip : AppCompatActivity() {
     private var db = FirebaseFirestore.getInstance()
     private var tripId=""
+    private var tripName=""
     private val imagesList= ArrayList<String>()
     private val storage= Firebase.storage
     private var downloadedCount= 0
+    private var documentId="";
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +44,9 @@ class EndTrip : AppCompatActivity() {
                     task?.result?.documents?.get(0).let{
                         Log.d("TripResult",it?.get("tripId").toString())
                         tripId= it?.get("tripId").toString()
+                        tripName= it?.get("trip name").toString()
+                        documentId= it?.id?:""
+
                         loadImages()
                     }
                 } else {
@@ -87,7 +91,7 @@ class EndTrip : AppCompatActivity() {
         }
     }
     private fun downloadImages(){
-        val dir = File(Environment.getExternalStorageDirectory().toString() + "/voyager/trip - $tripId/photos")
+        val dir = File(Environment.getExternalStorageDirectory().toString() + "/voyager/trip - $tripName/photos")
         Log.d("DownloadImages", "total count: ${imagesList.size}")
         imagesList.forEach { imageUrl->
             val file = File(dir,"${ UUID.randomUUID().toString()}.jpg")
@@ -104,15 +108,31 @@ class EndTrip : AppCompatActivity() {
                 .addOnSuccessListener {
                     Log.d("DownloadImages", "$imageUrl finished, total downloaded count: ${++downloadedCount}")
                     if(downloadedCount== imagesList.size){
-                        // todo action
+                        Toast.makeText(this,"Download Complete.. thank you", Toast.LENGTH_SHORT).show()
+                        removeUserFromTrip()
                     }
                 }.addOnFailureListener {
                     Log.d("DownloadImages", "$imageUrl failed, total downloaded count: ${++downloadedCount}")
+                    Toast.makeText(this,"Download Complete.. thank you", Toast.LENGTH_SHORT).show()
                     if(downloadedCount== imagesList.size){
-                        // todo action
+                        removeUserFromTrip()
                     }
                 }
         }
+    }
+
+    private fun removeUserFromTrip(){
+        db.collection("tripUsers")
+            .document(documentId)
+            .delete()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("TAG", "documents removed.")
+                    // todo action
+                } else {
+                    Log.w("TAG", "Error getting documents.", task.exception)
+                }
+            }
     }
 
     companion object{

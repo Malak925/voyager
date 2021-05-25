@@ -19,13 +19,19 @@ class  MainActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        if(auth.currentUser!=null){
+            startActivity(Intent(this, StartTrip::class.java))
+            finish()
+        }
+
+
         var y = Intent(this , signin::class.java)
         sg1.setOnClickListener {
             startActivity(y)
         }
         lg1.setOnClickListener {
-            em1.setText("test@test.com")
-            ps1.setText("123456789")
+            /*em1.setText("test@test.com")
+            ps1.setText("123456789")*/
             if (em1.text.trim().toString().isNotEmpty()&&ps1.text.trim().toString().isNotEmpty()){
 
                 creatUser(em1.text.trim().toString(), ps1.text.trim().toString())
@@ -48,14 +54,14 @@ class  MainActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         Log.e("task message", "sucessful")
                         task?.result?.let {
-                            task?.result?.user?.let { it1 ->
-                                FirebaseAuth.getInstance().updateCurrentUser(
-                                    it1
+                            task?.result?.user?.let { user ->
+                                auth.updateCurrentUser(
+                                    user
                                 )
                             }
                         }
                         startActivity(i)
-
+                        finish()
                     } else {
                         Log.e("task messege", "failed")
                     }
