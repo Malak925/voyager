@@ -35,8 +35,13 @@ class personal_profile : AppCompatActivity() {
                             phno2.text= document.data.getValue("phone number").toString()
                             em3.text=document.data.getValue("Email").toString()
 
-                           Glide.with(this)
-                                .load(document.data.getValue("imageUrl").toString())
+                            var imageUrl= ""
+                            if(document.data?.containsKey("imageUrl")){
+                                imageUrl= document.data?.getValue("imageUrl")?.toString()?:""
+                            }
+                            Glide.with(this)
+                                .load(imageUrl)
+                                .placeholder(R.drawable.ic_user_profile)
                                 .into(pic2)
 
                         }

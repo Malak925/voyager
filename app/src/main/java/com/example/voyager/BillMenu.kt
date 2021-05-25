@@ -8,23 +8,22 @@ import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_bill_menu.*
 
 class BillMenu : AppCompatActivity() {
-    var db = FirebaseFirestore.getInstance()
-    val Bills = ArrayList<String>()
+    private var db = FirebaseFirestore.getInstance()
+    private val bills = ArrayList<String>()
+    private var tripId= ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bill_menu)
-     loadTripBill()
+        loadTripId()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         if (item.itemId == R.id.perpro) {
 
             startActivity(Intent(this, personal_profile::class.java))
@@ -60,19 +59,16 @@ class BillMenu : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-
-    fun loadTripBill() {
-        db.collection("Bills")
-            .whereEqualTo("/00", FirebaseAuth.getInstance().currentUser?.email)
+    private fun loadTripId(){
+        db.collection("tripUsers")
+            .whereEqualTo("userId",FirebaseAuth.getInstance().currentUser?.email)
             .get()
             .addOnCompleteListener { task ->
-                if (task.isSuccessful && task.result?.documents?.isEmpty() == false) {
-
-                    task?.result?.documents?.get(0).let {
-                        Log.d("TripResult", it?.get("tripId").toString())
-
-                        val tripId = it?.get("tripId").toString()
-                        loadBills(tripId)
+                if (task.isSuccessful && task.result?.documents?.isEmpty()==false) {
+                    task?.result?.documents?.get(0).let{
+                        Log.d("TripResult",it?.get("tripId").toString())
+                        tripId= it?.get("tripId").toString()
+                        loadTripBill()
                     }
                 } else {
                     Log.w("TAG", "Error getting documents.", task.exception)
@@ -80,37 +76,37 @@ class BillMenu : AppCompatActivity() {
             }
     }
 
-    private fun loadBills(tripId: String) {
+    private fun loadTripBill() {
         db.collection("tripBills")
+            .whereEqualTo("userId", FirebaseAuth.getInstance().currentUser?.email)
             .whereEqualTo("tripId", tripId)
             .get()
             .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    task?.result?.documents?.let { documents ->
+                if (task.isSuccessful && task.result?.documents?.isEmpty() == false) {
+                    Log.d("TripResult", task?.result?.toString()?:"null")
 
-                        documents.forEach { documentSnapshot ->
-                            Bills.add(documentSnapshot.get("tripBills").toString())
-                        }
-                        setRecyclerView()
+                    task?.result?.documents?.forEach { document ->
+                        val billItem= "${document?.get("serviceName")} : ${document?.get("cost")}"
+                        bills.add(billItem)
                     }
+                    setRecyclerView()
                 } else {
                     Log.w("TAG", "Error getting documents.", task.exception)
                 }
             }
-
-
     }
+
 
         private fun setRecyclerView() {
 
           val list = findViewById<ListView>(R.id.bills)
-            var adapter = ArrayAdapter<String>(this , android.R.layout.simple_list_item_1,Bills )
+            var adapter = ArrayAdapter<String>(this , android.R.layout.simple_list_item_1,
+                bills
+            )
             list.adapter=adapter
 
             list.setOnItemClickListener(){parent , view , position , id ->
-                Toast.makeText(this, "Item  ${Bills[position]} +Clicked",Toast.LENGTH_SHORT).show()
-                val intent= Intent(this, personal_profile::class.java)
-                intent.putExtra("email",Bills[position])
+                Toast.makeText(this, "Item  ${bills[position]} +Clicked",Toast.LENGTH_SHORT).show()
             }
         }
     }

@@ -46,23 +46,11 @@ class imageUpload : AppCompatActivity() {
               }
               else{
                   pickImageFromGallery()
-
-
-
               }
-
-
           }
           else{
               pickImageFromGallery()
-
-
-
           }
-
-
-
-
       }
 
       NxtImg.setOnClickListener {
@@ -73,27 +61,17 @@ class imageUpload : AppCompatActivity() {
           }
           else{
               Toast.makeText(this, "No More Images",Toast.LENGTH_LONG).show()
-
-
-
           }
-
-
       }
       PreImg.setOnClickListener {
           if (postion > 0)
           {
               postion--
               VwImg.setImageURI(images!![postion])
-
-
           }
           else{
               Toast.makeText(this , "No More Images",Toast.LENGTH_LONG).show()
-
-
           }
-
       }
 
         UpImg.setOnClickListener {
@@ -110,15 +88,37 @@ class imageUpload : AppCompatActivity() {
                 val data = baos.toByteArray()
 
                 var uploadTask = imagesStorageRef.putBytes(data)
-                uploadTask.addOnFailureListener {
-                    Log.d("Upload","Fail")
-                }.addOnSuccessListener { taskSnapshot ->
-                    Log.d("Upload","Success")
+                val urlTask = uploadTask.continueWithTask { task ->
+                    if (!task.isSuccessful) {
+                        task.exception?.let {exception->
+                            Log.d("setImage","error: ${exception.message}")
+                        }
+                    }
+                    imagesStorageRef.downloadUrl
+                }.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val downloadUri = task.result
+                        Log.d("upload","DownloadUrl: $downloadUri")
+                        addImageUrlToDB(downloadUri.toString())
+                    } else {
+                        Log.d("upload","Failed")
+                    }
                 }
             }
-
-
         }
+    }
+
+    private fun addImageUrlToDB(url:String){
+        val imageMap: MutableMap<String, Any> = HashMap()
+        imageMap["tripId"]= tripId
+        imageMap["imageUrl"]= url
+
+        db.collection("images")
+            .add(imageMap)
+            .addOnSuccessListener { documentReference ->
+                Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.id)
+            }
+            .addOnFailureListener { e -> Log.w("TAG", "Error adding document", e) }
     }
 
     private fun pickImageFromGallery() {
