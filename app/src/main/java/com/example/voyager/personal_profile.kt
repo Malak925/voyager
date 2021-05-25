@@ -35,7 +35,7 @@ class personal_profile : AppCompatActivity() {
                             phno2.text= document.data.getValue("phone number").toString()
                             em3.text=document.data.getValue("Email").toString()
 
-                            Glide.with(this)
+                           Glide.with(this)
                                 .load(document.data.getValue("imageUrl").toString())
                                 .into(pic2)
 
@@ -77,6 +77,13 @@ class personal_profile : AppCompatActivity() {
         }
         else if (item.itemId == R.id.bills) {
             startActivity(Intent(this, BillMenu::class.java))
+
+
+        }
+        else if (item.itemId == R.id.end) {
+
+            startActivity(Intent(this, EndTrip::class.java))
+
 
 
         }

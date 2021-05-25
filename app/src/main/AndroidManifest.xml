@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Voyager"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BillMenu"></activity>
+        <activity android:name=".EndTrip"></activity>
+        <activity android:name=".BillMenu" />
         <activity android:name=".Bill" />
         <activity android:name=".MainActivity2" />
         <!--

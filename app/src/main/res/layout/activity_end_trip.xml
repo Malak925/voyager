@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EndTrip"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@drawable/_wallpaper">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VOYAGER:
+
+
+        Hope you had the most FUN!!"
+        android:fontFamily="casual"
+        android:textSize="30dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginBottom="50dp"
+        android:textColor="#9C27B0"/>
+    <Button
+        android:id="@+id/endtrip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End Trip"
+        app:backgroundTint="@color/material_on_primary_disabled"
+        android:fontFamily="casual"
+        android:textAllCaps="false"
+        android:textColor="#9C27B0"
+        />
+
+
+
+
+</LinearLayout>

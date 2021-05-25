@@ -143,28 +143,22 @@ class imageUpload : AppCompatActivity() {
         grantResults: IntArray
     ) {
 
-         when(requestCode){
+         when(requestCode) {
              PERMISSION_CODE -> {
-                 if(grantResults.size>0&&grantResults[0]==
-                         PackageManager.PERMISSION_GRANTED){
+                 if (grantResults.size > 0 && grantResults[0] ==
+                     PackageManager.PERMISSION_GRANTED
+                 ) {
                      pickImageFromGallery()
 
-                 }
-                 else{
-                     Toast.makeText(this ,"Permission Denied",Toast.LENGTH_LONG ).show()
-
-
+                 } else {
+                     Toast.makeText(this, "Permission Denied", Toast.LENGTH_LONG).show()
 
 
                  }
 
 
              }
-
-
-
          }
-
 
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
@@ -241,6 +235,13 @@ class imageUpload : AppCompatActivity() {
         }
         else if (item.itemId == R.id.bills) {
             startActivity(Intent(this, BillMenu::class.java))
+
+
+        }
+        else if (item.itemId == R.id.end) {
+
+            startActivity(Intent(this, EndTrip::class.java))
+
 
 
         }

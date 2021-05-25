@@ -105,9 +105,16 @@ open class CreateTrip : AppCompatActivity() {
             startActivity(Intent(this,participants::class.java))
 
 
+        } else if (item.itemId == R.id.end) {
+
+            startActivity(Intent(this, EndTrip::class.java))
+
+
+
         }
 
         return super.onOptionsItemSelected(item)
     }
+
 
 }

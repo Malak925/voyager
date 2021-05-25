@@ -58,8 +58,16 @@ class participants : AppCompatActivity() {
 
         }
         else if (item.itemId == R.id.end) {
-
+           /* val senderEmail = "Voyager.M.O.925@gmail.com\n"
+            var RecieverEmail = "${ FirebaseAuth.getInstance().currentUser?.email}"
             var intent = Intent(Intent.ACTION_SEND)
+            intent.putExtra(Intent.EXTRA_EMAIL,RecieverEmail)
+            intent.putExtra(Intent.EXTRA_SUBJECT,"Hope you had the most FUN")
+            intent.setType("message/rfc822")
+            startActivity(Intent.createChooser(intent,"Choose an email Client"))*/
+            startActivity(Intent(this, EndTrip::class.java))
+
+
 
         }
 
@@ -111,7 +119,7 @@ class participants : AppCompatActivity() {
 
         mListview.setOnItemClickListener() {
                 parent , view , position , id ->
-            Toast.makeText(this, "Item  ${participantsEmails[position]} +Clicked",Toast.LENGTH_SHORT).show()
+
             val intent= Intent(this, personal_profile::class.java)
             intent.putExtra("email",participantsEmails[position])
             startActivity(intent)

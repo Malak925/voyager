@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_start_trip.*
 
 class StartTrip : AppCompatActivity() {
@@ -65,6 +66,13 @@ class StartTrip : AppCompatActivity() {
         }
         else if (item.itemId == R.id.bills) {
             startActivity(Intent(this, BillMenu::class.java))
+
+
+        }
+        else if (item.itemId == R.id.end) {
+
+            startActivity(Intent(this, EndTrip::class.java))
+
 
 
         }

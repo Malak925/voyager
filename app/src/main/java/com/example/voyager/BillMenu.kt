@@ -20,7 +20,7 @@ class BillMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bill_menu)
-
+     loadTripBill()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -48,6 +48,13 @@ class BillMenu : AppCompatActivity() {
 
 
         }
+        else if (item.itemId == R.id.end) {
+
+            startActivity(Intent(this, EndTrip::class.java))
+
+
+
+        }
 
 
         return super.onOptionsItemSelected(item)
@@ -56,7 +63,7 @@ class BillMenu : AppCompatActivity() {
 
     fun loadTripBill() {
         db.collection("Bills")
-            .whereEqualTo("userId", FirebaseAuth.getInstance().currentUser?.email)
+            .whereEqualTo("/00", FirebaseAuth.getInstance().currentUser?.email)
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful && task.result?.documents?.isEmpty() == false) {
@@ -96,7 +103,7 @@ class BillMenu : AppCompatActivity() {
 
         private fun setRecyclerView() {
 
-          val list = findViewById<ListView>(R.id.Bill)
+          val list = findViewById<ListView>(R.id.bills)
             var adapter = ArrayAdapter<String>(this , android.R.layout.simple_list_item_1,Bills )
             list.adapter=adapter
 
