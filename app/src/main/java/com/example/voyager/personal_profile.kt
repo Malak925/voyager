@@ -23,12 +23,13 @@ class personal_profile : AppCompatActivity() {
         if(userEmail==null){
             userEmail= FirebaseAuth.getInstance().currentUser?.email
         }
-
+        Log.d("TAG","userEmail: $userEmail")
         db.collection("users")
             .whereEqualTo("Email",userEmail)
                 .get()
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
+                        Log.w("TAG", "Task success. ${task.result?.size()}")
                         for (document in task.result!!) {
                             Log.d("TAG", document.id + " => " + document.data)
                             uname2.text = document.data.getValue("Name").toString()

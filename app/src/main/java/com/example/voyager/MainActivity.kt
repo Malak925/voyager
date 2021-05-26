@@ -30,11 +30,11 @@ class  MainActivity : AppCompatActivity() {
             startActivity(y)
         }
         lg1.setOnClickListener {
-            /*em1.setText("test@test.com")
-            ps1.setText("123456789")*/
+            /*em1.setText("Malakdawod925@gmail.com")
+            ps1.setText("Malak525")*/
             if (em1.text.trim().toString().isNotEmpty()&&ps1.text.trim().toString().isNotEmpty()){
 
-                creatUser(em1.text.trim().toString(), ps1.text.trim().toString())
+                creatUser(em1.text.trim().toString().toLowerCase(), ps1.text.trim().toString())
 
             }else {
 

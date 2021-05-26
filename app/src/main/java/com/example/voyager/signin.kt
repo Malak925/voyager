@@ -60,7 +60,7 @@ class signin : AppCompatActivity() {
 
 
             if (em2.text.trim ().toString().isNotEmpty() && ps1.text.trim ().toString().isNotEmpty()) {
-                creatUser(em2.text.trim().toString(), ps1.text.trim().toString())
+                creatUser(em2.text.trim().toString().toLowerCase(), ps1.text.trim().toString())
             }
             else {
                 Toast.makeText(this, "Please Enter values", Toast.LENGTH_LONG).show()
@@ -73,10 +73,9 @@ class signin : AppCompatActivity() {
 // Add a new document with a generated ID
         user["Name"] = uname.text.toString()
         user["phone number"] = phno.text.toString()
-        user["Email"] = em2.text.toString()
+        user["Email"] = em2.text.toString().toLowerCase()
 
 // Add a new document with a generated ID
-
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
