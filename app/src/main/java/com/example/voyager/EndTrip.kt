@@ -97,7 +97,8 @@ class EndTrip : AppCompatActivity() {
             val file = File(dir,"${ UUID.randomUUID().toString()}.jpg")
             try {
                 if (!dir.exists()) {
-                    dir.mkdirs()
+                    val isCreated= dir.mkdirs()
+                    Log.d("UploadImage","isCreated: $isCreated")
                 }
                 file.createNewFile()
             } catch (e: IOException) {

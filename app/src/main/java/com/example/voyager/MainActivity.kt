@@ -30,7 +30,7 @@ class  MainActivity : AppCompatActivity() {
             startActivity(y)
         }
         lg1.setOnClickListener {
-            /*em1.setText("Malakdawod925@gmail.com")
+            /*em1.setText("malakdawod925@gmail.com")
             ps1.setText("Malak525")*/
             if (em1.text.trim().toString().isNotEmpty()&&ps1.text.trim().toString().isNotEmpty()){
 
