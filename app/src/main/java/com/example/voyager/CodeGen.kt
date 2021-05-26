@@ -51,14 +51,9 @@ class CodeGen : AppCompatActivity() {
 
         }
         copy.setOnClickListener {
-
-
-            ClipData.newPlainText("text", genCod.text);
+            myClip= ClipData.newPlainText("text", genCod.text);
             myClip?.let { it1 -> myClipboard?.setPrimaryClip(it1) };
-
             Toast.makeText(this, "Text Copied", Toast.LENGTH_SHORT).show();
-
-
         }
 
     }
